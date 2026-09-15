@@ -1,0 +1,37 @@
+
+NIH eSubmission validations drafts (date in filename)  (5 files)
+   ok  raft-1-12-2016 → draft-2-5-2016  expected descendant, got descendant (shared 1535, onlyA 21, onlyB 30)
+   ok  raft-1-12-2016 → draft-3-1-2016  expected descendant, got descendant (shared 1535, onlyA 21, onlyB 33)
+   ok  raft-1-12-2016 → raft-3-31-2016  expected descendant, got descendant (shared 1535, onlyA 21, onlyB 56)
+   ok  raft-1-12-2016 → raft-7-13-2016  expected descendant, got descendant (shared 1535, onlyA 21, onlyB 76)
+   ok  draft-2-5-2016 ← raft-1-12-2016  expected ancestor, got ancestor (shared 1535, onlyA 30, onlyB 21)
+   ok  draft-2-5-2016 → draft-3-1-2016  expected descendant, got descendant (shared 1564, onlyA 1, onlyB 4)
+   ok  draft-2-5-2016 → raft-3-31-2016  expected descendant, got descendant (shared 1564, onlyA 1, onlyB 27)
+   ok  draft-2-5-2016 → raft-7-13-2016  expected descendant, got descendant (shared 1564, onlyA 1, onlyB 47)
+   ok  draft-3-1-2016 ← raft-1-12-2016  expected ancestor, got ancestor (shared 1535, onlyA 33, onlyB 21)
+   ok  draft-3-1-2016 ← draft-2-5-2016  expected ancestor, got ancestor (shared 1564, onlyA 4, onlyB 1)
+   ok  draft-3-1-2016 → raft-3-31-2016  expected descendant, got descendant (shared 1567, onlyA 1, onlyB 24)
+   ok  draft-3-1-2016 → raft-7-13-2016  expected descendant, got descendant (shared 1567, onlyA 1, onlyB 44)
+   ok  raft-3-31-2016 ← raft-1-12-2016  expected ancestor, got ancestor (shared 1535, onlyA 56, onlyB 21)
+   ok  raft-3-31-2016 ← draft-2-5-2016  expected ancestor, got ancestor (shared 1564, onlyA 27, onlyB 1)
+   ok  raft-3-31-2016 ← draft-3-1-2016  expected ancestor, got ancestor (shared 1567, onlyA 24, onlyB 1)
+   ok  raft-3-31-2016 → raft-7-13-2016  expected descendant, got descendant (shared 1590, onlyA 1, onlyB 21)
+   ok  raft-7-13-2016 ← raft-1-12-2016  expected ancestor, got ancestor (shared 1535, onlyA 76, onlyB 21)
+   ok  raft-7-13-2016 ← draft-2-5-2016  expected ancestor, got ancestor (shared 1564, onlyA 47, onlyB 1)
+   ok  raft-7-13-2016 ← draft-3-1-2016  expected ancestor, got ancestor (shared 1567, onlyA 44, onlyB 1)
+   ok  raft-7-13-2016 ← raft-3-31-2016  expected ancestor, got ancestor (shared 1590, onlyA 21, onlyB 1)
+
+NIST Baldrige eligibility form (year in filename)  (3 files)
+   ok  igibility_Form → igibility_Form  expected descendant, got descendant (shared 320, onlyA 0, onlyB 64)
+   ok  igibility_Form → igibility_Form  expected descendant, got descendant (shared 320, onlyA 0, onlyB 131)
+   ok  igibility_Form ← igibility_Form  expected ancestor, got ancestor (shared 320, onlyA 64, onlyB 0)
+   ok  igibility_Form → igibility_Form  expected descendant, got descendant (shared 384, onlyA 0, onlyB 67)
+   ok  igibility_Form ← igibility_Form  expected ancestor, got ancestor (shared 320, onlyA 131, onlyB 0)
+   ok  igibility_Form ← igibility_Form  expected ancestor, got ancestor (shared 384, onlyA 67, onlyB 0)
+
+NIST Baldrige award application form (year in filename)  (2 files)
+   ok  plication_Form → plication_Form  expected descendant, got descendant (shared 37, onlyA 0, onlyB 6)
+   ok  plication_Form ← plication_Form  expected ancestor, got ancestor (shared 37, onlyA 6, onlyB 0)
+
+28 directed pairs correct, 0 wrong
+

@@ -1,0 +1,13 @@
+{
+  "name": "palimpsest",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Offline Word document metadata inspection and selective cleaning",
+  "scripts": {
+    "build": "node build.js",
+    "test": "node test.js && node validate-lineage.js",
+    "test:browser": "node browser-test.mjs"
+  },
+  "devDependencies": {"playwright": "1.63.0"}
+}

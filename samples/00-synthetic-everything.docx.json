@@ -1,0 +1,1 @@
+{"label":"synthetic · one of everything","note":"Hand-built test fixture containing every leak the engine looks for: sessions, foreign ids, tracked deletions, hidden text, EXIF+GPS, a cropped image, a sensitivity label, an embedded workbook."}

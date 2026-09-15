@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palimpsest — the editing history hidden in a Word file</title>
+<meta name="description" content="Drop in a .docx and see the editing sessions, pasted-in strata, recoverable deletions and cropped-away image content that Word wrote into the file without telling anyone.">
+<!--CSS-->
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="logo">Palimpsest</div>
+    <div class="tag">A Word document can retain <em>traces of its editing history</em>. Explore what is still inside.</div>
+    <p class="sub">
+      Word can stamp edited text with a random <code>w:rsid</code> — a revision-save id — that remains in the saved file.
+      Drop a <code>.docx</code> below to inspect revision groups, possible imported content, recorded editing-time metadata,
+      recoverable deletions, and content outside image crops. Metadata is a clue, not proof of who wrote the text or how.
+      Then choose the removals and <b>download a cleaned copy with a before/after report</b>.
+    </p>
+    <div class="privacy">everything runs in this tab · <b>no upload, no server, no network</b> · works offline from a single file</div>
+  </header>
+
+  <div id="intro">
+    <div class="drop" id="drop">
+      <h3>Drop a .docx here</h3>
+      <p>or click to choose · nothing leaves your machine</p>
+      <div class="samples" id="samples"><!--SAMPLES--></div>
+    </div>
+    <div class="footnote">
+      <h4>what it finds</h4>
+      <p><b>Revision groups.</b> Document text coloured by its recorded revision id; these groups are not a complete writing timeline.
+      <b>Unlisted save-ids.</b> Ids in the body but absent from its session list can suggest imported content or rewritten metadata.
+      <b>Editing-time arithmetic.</b> Compare words with recorded minutes; resets, conversions, and missing metadata can affect the result.
+      <b>Recoverable content.</b> Unaccepted tracked deletions, hidden/white/1-point text, comments, AutoText, embedded workbooks.
+      <b>Image excavation.</b> Word keeps the whole picture and displays a window onto it, so the cropped-away part is still in the file — along with EXIF, GPS and camera model.
+      <b>Lineage.</b> Drop a second version to see shared sessions and, via stable paragraph ids, exactly which paragraphs were silently rewritten.</p>
+      <h4>and what it removes</h4>
+      <p>Nineteen fixes, from rsid stamps and paragraph ids to tracked changes, comments, invisible runs, EXIF/GPS, sensitivity labels, AutoText,
+      page thumbnails, UNC paths and language tags — plus baking image crops so the off-camera pixels stop travelling. The rewritten file is
+      re-analyzed in front of you. The test harness checked 196 parsed documents for container consistency and visible-text preservation;
+      a real Office renderer has not verified layout preservation. Inspect the cleaned copy before relying on it.</p>
+    </div>
+  </div>
+
+  <div id="out"></div>
+</div>
+<input type="file" id="file" accept=".docx,.docm,.dotx" class="hidden">
+<div class="tip" id="tip"></div>
+<!--JS-->
+</body>
+</html>

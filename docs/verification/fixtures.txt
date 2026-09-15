@@ -1,0 +1,30 @@
+...................................................................................................................
+
+scrubbed 130 documents from fixtures/
+  115 produced a structurally valid .docx with text preserved
+  text preserved exactly: 115/115
+  actionable findings: 98 → 6 (94% removed)
+  bytes: 7429 KB → 6194 KB
+
+what was removed across the corpus:
+  sessions       111610
+  locales          4121
+  paraIds           416
+  identity          295
+  timing            224
+  future            224
+  dates             216
+  tracked            97
+  glossary           73
+  customxml          54
+  unused             20
+  imgmeta            17
+  invisible          14
+  thumbnail           8
+  comments            6
+  refs                4
+  orphans             1
+
+findings that survive the scrub:
+    3  N embedded objects (whole files) are inside this document
+    3  N embedded object (a whole file) is inside this document

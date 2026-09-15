@@ -1,0 +1,15 @@
+{
+  "verifiedAt": "2026-09-15T04:13:49.192Z",
+  "browser": "Chromium",
+  "offline": true,
+  "httpRequests": [],
+  "pageErrors": [],
+  "passed": [
+    "Offline analysis of embedded synthetic document, including ignored remote-sample query",
+    "Actual cleaned DOCX download re-analyzed in Node and browser",
+    "Real document image excavation and browser crop baking",
+    "Embedded 2015/2016 forms compared with 384 shared revision IDs",
+    "Malformed document gets a visible error",
+    "Mobile report stays within a 390px viewport"
+  ]
+}

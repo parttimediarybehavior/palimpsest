@@ -1,0 +1,52 @@
+scanned 81 documents from corpus/  (0 failed to parse)
+engine time: median 11 ms/file, worst 1871 ms
+
+producers:
+   80  Microsoft Office Word
+    1  (none)
+
+what leaks, across the whole corpus:
+  a name (author / last editor / reviewer)      70/81 (86%)
+  two or more distinct names                    49/81 (60%)
+  an email address or account id                0/81 (0%)
+  employer recorded in Company                  61/81 (75%)
+  a named (non-default) template                6/81 (7%)
+  editing-session ids (Word lineage)            80/81 (99%)
+  recoverable tracked deletions                 1/81 (1%)
+  text invisible on screen                      3/81 (4%)
+  comments left in the file                     0/81 (0%)
+  images cropped with the rest still inside     2/81 (2%)
+  images carrying their own metadata            12/81 (15%)
+  images with GPS coordinates                   0/81 (0%)
+  images present but never displayed            7/81 (9%)
+  whole embedded files (workbooks etc.)         2/81 (2%)
+  AutoText / building blocks                    1/81 (1%)
+  macros                                        0/81 (0%)
+  Microsoft sensitivity label                   0/81 (0%)
+  external / local-path references              37/81 (46%)
+  more than one language locale in the runs     8/81 (10%)
+  print history                                 41/81 (51%)
+
+among the 80 Word-produced files with session ids:
+  median sessions recorded                      118
+  median sessions that still own text           21
+  median sessions fully overwritten             61
+  carry save-ids from other documents           49/80 (61%)
+  median foreign ids when present               3
+  one session owns >=85% of the text            13/80 (16%)
+  >300 words with <=1 recorded editing minute   37/57 (65%)
+  implied typing speed >120 wpm                 29/57 (51%)
+
+leakiest documents:
+   8 findings · 9f24b5cb_SVS-Validations-Single-and-Multi-Project-Apri Text that was deleted is still inside this file
+   6 findings · 0e6d4fcb_Agreement_for_the_Transfer_of_Data_.docx      Assembled over 241 separate editing sessions
+   6 findings · 44995dbb_idc1-032133.docx                              A cropped image is hiding recoverable content
+   6 findings · 4a6c5977_eSub-validations-draft-7-13-2016.docx         Assembled from 121 editing sessions of other documents
+   6 findings · 5e5549c5_eSub-validations-draft-3-31-2016.docx         This text was not typed in this document
+   6 findings · 5f2383c4_eSub-validations-draft-1-12-2016.docx         This text was not typed in this document
+   6 findings · ab46a623_eSub-validations-draft-2-5-2016.docx          Assembled from 112 editing sessions of other documents
+   6 findings · afd9e47f_idc1-026793.docx                              Assembled over 726 separate editing sessions
+   6 findings · de7ebfff_eSub-validations-draft-3-1-2016.docx          Assembled from 112 editing sessions of other documents
+   5 findings · 627b5c0d_application-guide-biosketch-instructions-rev- Written in one sitting (or pasted in whole)
+   5 findings · 808bbdc9_061011-Background-Report.docx                 This text was not typed in this document
+   5 findings · 84f50b4e_Company_NonExclusive_License_Example_5-27-201 Assembled over 422 separate editing sessions

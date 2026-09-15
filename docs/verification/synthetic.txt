@@ -1,0 +1,99 @@
+
+synthetic document with one of everything
+  ok   zip is parsed without a library
+  ok   document text is extracted in order
+  ok   deleted text excluded from the visible word count
+  ok   rsidRoot identified as the creating session
+  ok   native sessions counted from settings.xml
+  ok   sessions with no surviving text are still listed
+  ok   three sessions own visible text
+  ok   foreign formatting id detected
+  ok   root session anchored to the creation timestamp
+  ok   deleting session ordered after the inserting session
+  ok   contiguous block reported as an ID group without asserting how it was written
+  ok   tracked deletion text recovered
+  ok   deletion is dated
+  ok   hidden (w:vanish) text recovered
+  ok   white-on-white keyword stuffing recovered
+  ok   comment body, author and resolution state read
+  ok   co-author email lifted from people.xml
+  ok   every name is collected with its role
+  ok   image crop geometry computed
+  ok   EXIF camera make/model parsed from embedded image
+  ok   EXIF GPS converted to decimal degrees
+  ok   JPEG dimensions read from SOF0
+  ok   sensitivity label decoded with owner and date
+  ok   UNC template path surfaced
+  ok   external file:// reference surfaced
+  ok   embedded workbook reported
+  ok   AutoText/glossary content recovered
+  ok   MERGEFIELD field code captured
+  ok   document protection reported as cosmetic
+  ok   track-changes-left-on warned
+  ok   mixed run languages detected
+  ok   typing rate implausibility computed
+  ok   printing recorded
+  ok   producer version mapped to a product name
+  ok   verdict headline prefers the recoverable deletion
+
+lineage: the same file saved again
+  ok   descendant detected from the session list
+  ok   the added session is the only difference
+  ok   paragraph identity survives a rewrite
+  ok   appended paragraph reported as new
+  ok   unrelated documents are not linked
+  ok   text report includes the recovered deletion
+
+parsers
+  ok   attributes with > inside quotes parse
+  ok   numeric entities decode
+  ok   CDATA and entities in text decode
+  ok   stored and deflated entries both read back
+  ok   zip records Word's zeroed 1980 timestamps
+  ok   PNG geometry read
+  ok   PNG eXIf chunk parsed
+  ok   non-image bytes degrade quietly
+
+scrub: removing what was found
+  ok   every leak in the fixture has a fix offered
+  ok   the cleaned file still parses as a .docx
+  ok   no rsid stamps survive anywhere
+  ok   no session is left to analyse
+  ok   paragraph ids are gone
+  ok   no names remain
+  ok   tracked deletion is applied, not just hidden
+  ok   the insertion survived as ordinary text
+  ok   hidden and white text are gone
+  ok   comments are gone, anchors and all
+  ok   AutoText part is gone
+  ok   customXml and the sensitivity label are gone
+  ok   people.xml (account ids) is gone
+  ok   the UNC path reference is gone
+  ok   EXIF, GPS and XMP are stripped from the images
+  ok   the editing clock is reset
+  ok   timestamps are gone
+  ok   run language tags are gone
+  ok   the page thumbnail is gone
+  ok   Word is told to keep stripping on save
+  ok   the scrubbed fixture has sparse metadata without claiming its history is proven
+  ok   visible text survives except the flagged passages
+  ok   nothing was invented
+  ok   [Content_Types].xml is still the first entry
+  ok   no content type points at a part that was removed
+  ok   every r:id in the document still resolves
+  ok   no relationship dangles
+  ok   the CLI reports that it cannot bake crops
+  ok   crop windows are untouched without an encoder
+  ok   with an encoder the crop is baked in
+  ok   the baked image is the visible window only
+  ok   a single-fix scrub touches only that fix
+  ok   opting into embedded-file removal removes them
+  ok   editElements does not confuse w:del with w:delText
+  ok   editElements handles nesting of the same tag
+  ok   editElements unwraps without eating siblings
+  ok   editElements descends into elements it rejects
+  ok   editElements tolerates > inside attribute values
+  ok   a malformed part is left alone rather than mangled
+
+88 passed, 0 failed
+

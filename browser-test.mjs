@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import zlib from 'node:zlib';
+import {analyze} from './src/engine.js';
+const {chromium}=await import(process.env.PALIMPSEST_PLAYWRIGHT||'playwright');
+const url=new URL('./dist/palimpsest.html',import.meta.url).href;
+const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+const passed=[],errors=[],requests=[];
+await mkdir('docs/verification',{recursive:true});
+const context=await browser.newContext({viewport:{width:1440,height:1000}});
+await context.setOffline(true);
+const page=await context.newPage();
+page.on('pageerror',e=>errors.push(e.message));
+page.on('request',r=>{if(/^https?:/.test(r.url()))requests.push(r.url());});
+async function sample(i){await page.goto(url);await page.locator(`[data-sample="${i}"]`).click();await page.waitForFunction(()=>window.__rep,{timeout:20000});}
+async function clean(){await page.getByRole('button',{name:'clean this file',exact:true}).click();await page.waitForFunction(()=>window.__clean,{timeout:20000});}
+try{
+  await page.goto(url+'?sample=https://example.invalid/not-requested.docx');
+  await page.locator('[data-sample="0"]').click();await page.waitForFunction(()=>window.__rep);
+  assert.ok(await page.evaluate(()=>__rep.deletedText.length>0&&__rep.sessions.length>0));
+  await page.screenshot({path:'docs/verification/browser-analysis.png'});
+  passed.push('Offline analysis of embedded synthetic document, including ignored remote-sample query');
+  await page.getByRole('button',{name:'select all',exact:true}).click();await clean();
+  const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:/^download cleaned .docx/}).click()]);
+  const bytes=await readFile(await download.path());
+  const report=await analyze(new Uint8Array(bytes),{inflate:async b=>new Uint8Array(zlib.inflateRawSync(b))});
+  assert.equal(report.sessions.length,0);assert.equal(report.deletedText.length,0);assert.equal(report.identities.length,0);
+  await download.saveAs('docs/verification/browser-cleaned-synthetic.docx');
+  await page.getByRole('button',{name:'analyze the result',exact:true}).click();
+  await page.waitForFunction(()=>__rep.sessions.length===0);assert.match(await page.locator('#out').innerText(),/sparse editing metadata/);
+  passed.push('Actual cleaned DOCX download re-analyzed in Node and browser');
+  await sample(5);assert.ok(await page.evaluate(()=>__rep.media.some(m=>m.cropped)));
+  await page.getByRole('button',{name:'excavate',exact:true}).first().click();
+  await clean();
+  const cropBytes=await page.evaluate(()=>Array.from(__clean.bytes));
+  const cropped=await analyze(Uint8Array.from(cropBytes),{inflate:async b=>new Uint8Array(zlib.inflateRawSync(b))});
+  assert.equal(cropped.media.filter(m=>m.cropped).length,0);
+  passed.push('Real document image excavation and browser crop baking');
+  await sample(6);await page.locator('.cmpout').waitFor({timeout:20000});
+  assert.match(await page.locator('.cmpout').innerText(),/384/);
+  passed.push('Embedded 2015/2016 forms compared with 384 shared revision IDs');
+  await page.locator('#file').setInputFiles({name:'invalid.docx',mimeType:'application/octet-stream',buffer:Buffer.from('not a zip')});
+  await page.locator('#out .err').waitFor();
+  passed.push('Malformed document gets a visible error');
+  await page.setViewportSize({width:390,height:844});await sample(0);
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Mobile document report overflows');
+  await page.screenshot({path:'docs/verification/browser-mobile.png',fullPage:true});
+  passed.push('Mobile report stays within a 390px viewport');
+  assert.deepEqual(requests,[]);assert.deepEqual(errors,[]);
+  const result={verifiedAt:new Date().toISOString(),browser:'Chromium',offline:true,httpRequests:requests,pageErrors:errors,passed};
+  await writeFile('docs/verification/browser.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
+}finally{await browser.close();}

@@ -1,0 +1,29 @@
+.................................................................................
+
+scrubbed 81 documents from corpus/
+  [1m81[0m produced a structurally valid .docx with text preserved
+  text preserved exactly: [1m81/81[0m
+  actionable findings: 255 → [38;5;108m4[0m (98% removed)
+  bytes: 19250 KB → 12186 KB
+
+what was removed across the corpus:
+  sessions       789718
+  locales         78615
+  paraIds         21151
+  tracked          2151
+  identity          210
+  timing            201
+  customxml         192
+  future            162
+  dates             160
+  unused             61
+  imgmeta             7
+  glossary            6
+  invisible           5
+  orphans             2
+  refs                2
+
+findings that survive the scrub:
+    2  N embedded objects (whole files) are inside this document
+    1  N cropped images — and the cropped-away parts are still here
+    1  N cropped image — and the cropped-away parts are still here
