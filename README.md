@@ -1,5 +1,7 @@
 # Palimpsest
 
+> **Project status:** Palimpsest is the earlier DOCX inspection and cleanup tool. For new inspection and cleanup work, start with [Doc Rinse](https://github.com/parttimediarybehavior/doc-rinse), the newer project with revised DOCX cleanup, documented LibreOffice renderer checks, and limited XLSX/PPTX support. It also retains the DOCX revision-group and version-comparison features. This repository and its app remain public for existing links, examples, and research history; the verification results below describe Palimpsest, not Doc Rinse.
+
 **Inspect what a Word document still carries: revision groups, metadata, recoverable deletions, embedded files, and pixels outside image crops. Then choose what to remove.**
 
 [Open the live app](https://parttimediarybehavior.github.io/palimpsest/) · [Download the offline release](https://github.com/parttimediarybehavior/palimpsest/releases/latest)
